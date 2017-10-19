@@ -38,6 +38,8 @@ while page <= PAGES:
 
         memberData['party'] = member.cssselect('h5')[0].text.replace('BLOQUE ', '')
 
+        memberData['id'] = member.cssselect('a')[0].text
+
         print memberData
 
         parsedMembers.append(memberData)
@@ -51,5 +53,5 @@ try:
 except sqlite3.OperationalError:
     pass
 scraperwiki.sqlite.save(
-    unique_keys=['name'],
+    unique_keys=['id'],
     data=parsedMembers)
